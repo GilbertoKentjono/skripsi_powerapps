@@ -1,0 +1,30 @@
+digraph G {
+  graph [rankdir=TB, fontname="DejaVu Sans", nodesep=0.5, ranksep=0.32, dpi=200, pad=0.3];
+  node  [fontname="DejaVu Sans", fontsize=10.5, shape=box, style="rounded", penwidth=1.2];
+  edge  [fontname="DejaVu Sans", fontsize=9.5, penwidth=1.1];
+  start [shape=ellipse, label="Mulai\n(dijalankan manual, jam off-peak 22.00–06.00 WIB)"];
+  a1 [label="Buka canvas app dengan sesi login tersimpan"];
+  a2 [label="Acak urutan seluruh kombinasi\n(pola × sumber data × skala)"];
+  a3 [label="Ambil kombinasi berikutnya\nisi parameter (mis. DV_10k)"];
+  a4 [label="Jalankan run\n(2 warm-up, lalu 5 pengukuran)"];
+  a5 [label="Klik tombol pola"];
+  a6 [label="Tunggu status RUNNING\n(mencegah pembacaan status run sebelumnya)"];
+  a7 [label="Tunggu status DONE atau ERR\n(batas waktu 900 detik)"];
+  d1 [shape=diamond, label="Run\npengukuran?", width=1.6, height=0.9];
+  a8 [label="Parse status: baris, ms, fnms\ntulis satu baris ke CSV"];
+  a9 [label="Catat sebagai warm-up\n(tidak dianalisis)"];
+  a10 [label="Jeda ±30 detik"];
+  d2 [shape=diamond, label="7 run\nselesai?", width=1.4, height=0.9];
+  d3 [shape=diamond, label="Semua kombinasi\nselesai?", width=2.0, height=1.0];
+  a11 [label="Tulis ringkasan median dan CV\n(tandai CV di atas ambang)"];
+  end [shape=ellipse, label="Selesai\nData siap dianalisis"];
+
+  start->a1->a2->a3->a4->a5->a6->a7->d1;
+  d1->a8 [label=" Ya"]; d1->a9 [label=" Tidak"];
+  a8->a10; a9->a10; a10->d2;
+  d2->a5 [label=" Tidak", constraint=false];
+  d2->d3 [label=" Ya"];
+  d3->a3 [label=" Tidak", constraint=false];
+  d3->a11 [label=" Ya"]; a11->end;
+  {rank=same; a8; a9}
+}

@@ -1,0 +1,14 @@
+digraph G {
+  graph [rankdir=TB, fontname="DejaVu Sans", nodesep=0.4, ranksep=0.35, dpi=200, pad=0.3];
+  node  [fontname="DejaVu Sans", fontsize=11, shape=box, style="rounded", penwidth=1.2, width=4.6];
+  edge  [penwidth=1.1];
+  t1 [label="Tahap 1 — Studi Literatur dan Analisis Kebutuhan\nKeluaran: taksonomi pola S1–S4, tiga celah penelitian"];
+  t2 [label="Tahap 2 — Perancangan Sistem dan Desain Pengujian\nKeluaran: arsitektur, variabel, protokol, diagram UML"];
+  t3 [label="Tahap 3 — Generasi dan Impor Dataset\nKeluaran: dataset sintetis (5 skala) dan eksternal UCI + Olist (4 skala)"];
+  t4 [label="Tahap 4 — Implementasi Sistem Pengujian\nKeluaran: canvas app S1–S4, Azure Functions, skrip Playwright"];
+  t5 [label="Tahap 5 — Eksekusi Pengujian dan Pengumpulan Data\nKeluaran: data mentah waktu respons dan jumlah baris"];
+  t6 [label="Tahap 6 — Analisis dan Konstruksi Decision Framework\nKeluaran: threshold, komparasi sumber data, decision tree tervalidasi"];
+  {rank=same; rm1 [label="RM1", shape=ellipse, width=0.8]; rm2 [label="RM2", shape=ellipse, width=0.8]; rm3 [label="RM3", shape=ellipse, width=0.8]; rm1->rm2->rm3 [style=invis];}
+  t1->t2->t3->t4->t5->t6;
+  t6->rm1 [style=dashed]; t6->rm2 [style=dashed]; t6->rm3 [style=dashed];
+}

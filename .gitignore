@@ -1,0 +1,33 @@
+# credential dan sesi login — JANGAN di-commit
+.env
+*.env
+!.env.example
+auth_state.json
+storage_state*.json
+local.settings.json
+*.publishsettings
+
+# dataset (tidak didistribusikan ulang; dibuat ulang dengan script)
+data/train/
+data/holdout/
+data/external/
+scripts/raw/
+scripts/data_backup/
+
+# output sementara Playwright (salinan final ada di data/final)
+scripts/playwright/results/
+
+# Python / Azure Functions
+__pycache__/
+*.pyc
+.venv/
+venv/
+.python_packages/
+
+# buku dan dokumen pribadi
+*.docx
+*.pdf
+
+# OS
+.DS_Store
+Thumbs.db

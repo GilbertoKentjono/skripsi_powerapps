@@ -1,0 +1,9 @@
+dataset,skala,baris_cocok,selectivity_pct,ambang_s1,prediksi_kerangka
+uci,5000,1985,39.7,5038,S1 lengkap
+uci,10000,3912,39.12,5112,S1 terpotong
+uci,50000,19547,39.09,5116,S1 terpotong
+uci,100000,39359,39.36,5081,S1 terpotong
+olist,5000,1388,27.76,7205,S1 lengkap
+olist,10000,2800,28.0,7143,S1 terpotong
+olist,50000,13953,27.91,7167,S1 terpotong
+olist,100000,27886,27.89,7172,S1 terpotong

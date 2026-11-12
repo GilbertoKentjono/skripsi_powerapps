@@ -1,0 +1,12 @@
+cell,V,predicate,s_est,pred_rows,true_rows,model_safe
+9k,9000,"Status = ""Selesai"" && Seq <= 9000",0.1968,1771,1746,True
+11k,11000,"Status = ""Selesai"" && Seq <= 11000",0.1968,2000,2141,False
+12k,12000,"Status = ""Selesai"" && Seq <= 12000",0.1968,2000,2329,False
+15k,15000,"Status = ""Selesai"" && Seq <= 15000",0.1968,2000,2970,False
+20k,20000,"Status = ""Selesai"" && Seq <= 20000",0.1968,2000,3940,False
+10k_s05,10000,JumlahTransaksi >= 20,0.0506,506,488,True
+10k_s10,10000,JumlahTransaksi >= 19,0.1024,1024,1024,True
+10k_s15,10000,JumlahTransaksi >= 18,0.1602,1602,1545,True
+10k_s20,10000,JumlahTransaksi >= 17,0.207,2000,2031,False
+10k_s25,10000,JumlahTransaksi >= 16,0.2542,2000,2510,False
+10k_s50,10000,JumlahTransaksi >= 11,0.5048,2000,5028,False

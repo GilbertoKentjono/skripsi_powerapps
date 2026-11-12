@@ -1,0 +1,24 @@
+digraph G {
+  graph [rankdir=TB, fontname="DejaVu Sans", nodesep=0.35, ranksep=0.4, dpi=200, pad=0.3];
+  node  [fontname="DejaVu Sans", fontsize=10.5, penwidth=1.2];
+  edge  [fontname="DejaVu Sans", fontsize=9.5, penwidth=1.1];
+  start [shape=box, style="rounded", label="Kebutuhan data pada aplikasi Power Apps"];
+  q1 [shape=diamond, label="Jenis operasi?", width=2.0, height=0.9];
+  qa [shape=diamond, label="Custom API\n(Azure Functions)\ntersedia?", width=2.2, height=1.1];
+  s4 [shape=box, style="rounded,filled", fillcolor="#dbe7f5", label="S4 Custom API\n(terverifikasi untuk agregasi)"];
+  na [shape=box, style="rounded,filled", fillcolor="#f6dede", label="Tidak ada pola terverifikasi\nperkecil cakupan data"];
+  q2 [shape=diamond, label="Predikat delegable?\n(tanpa delegation warning)", width=2.8, height=1.1];
+  fx [shape=box, style="rounded,filled", fillcolor="#f6dede", label="Ubah predikat agar delegable\n(S2 selalu terpotong ≈ s × 2.000 baris)"];
+  q3 [shape=diamond, label="Estimasi baris hasil\nV × s ≤ 1.800?\n(margin k = 0,9)", width=2.6, height=1.3];
+  q4 [shape=diamond, label="Median waktu\nrespons S1 < SLA?", width=2.3, height=1.1];
+  s1 [shape=box, style="rounded,filled", fillcolor="#dff0e3", label="S1 Filter + Sort delegable\n+ guard runtime:\nIf(CountRows(colResult) = 2000, peringatan)"];
+  nb [shape=box, style="rounded,filled", fillcolor="#f6dede", label="Persempit predikat atau paginasi\npada antarmuka (≤ 1.800 baris per tampilan)\nS4 pengambilan baris belum diverifikasi"];
+  start -> q1;
+  q1 -> qa [label="  Agregasi\n  (COUNT, SUM)"];
+  q1 -> q2 [label="  Pengambilan\n  baris"];
+  qa -> s4 [label="  Ya"]; qa -> na [label="  Tidak"];
+  q2 -> fx [label="  Tidak"]; q2 -> q3 [label="  Ya"];
+  q3 -> q4 [label="  Ya"]; q3 -> nb [label="  Tidak"];
+  q4 -> s1 [label="  Ya"]; q4 -> nb [label="  Tidak"];
+  note [shape=note, fontsize=9, label="V = jumlah baris yang dicakup query\ns = selektivitas predikat (diestimasi dari sampel)\nModel: baris S1 = min(V × s, 2.000)\nSLA = 2.000 ms"];
+}
