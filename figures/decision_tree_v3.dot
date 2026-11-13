@@ -14,7 +14,7 @@ digraph G {
   s1 [shape=box, style="rounded,filled", fillcolor="#dff0e3", label="S1 Filter + Sort delegable\n+ guard runtime:\nIf(CountRows(colResult) = 2000, peringatan)"];
   nb [shape=box, style="rounded,filled", fillcolor="#f6dede", label="Persempit predikat atau paginasi\npada antarmuka (≤ 1.800 baris per tampilan)\nS4 pengambilan baris belum diverifikasi"];
   start -> q1;
-  q1 -> qa [label="  Agregasi\n  (COUNT, SUM)"];
+  q1 -> qa [label="  Agregasi\n  (COUNT)"];
   q1 -> q2 [label="  Pengambilan\n  baris"];
   qa -> s4 [label="  Ya"]; qa -> na [label="  Tidak"];
   q2 -> fx [label="  Tidak"]; q2 -> q3 [label="  Ya"];
